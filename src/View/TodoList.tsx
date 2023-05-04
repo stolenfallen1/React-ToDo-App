@@ -9,13 +9,20 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <InputForm onAdd={handleAddItem} />
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+    <div className="flex justify-center items-center">
+      <div>
+        <InputForm onAdd={handleAddItem} />
+        <ul>
+          {items.map((item, index) => (
+            <li
+              key={index}
+              className="py-3 px-3 my-2 text-lg bg-teal-800 text-white max-w-lg rounded cursor-pointer"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
