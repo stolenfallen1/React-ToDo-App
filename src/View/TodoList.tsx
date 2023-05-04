@@ -1,12 +1,33 @@
 import { useState } from "react";
 import InputForm from "../components/InputForm";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import UpdateModal from "../components/UpdateModal";
 
 const TodoList = () => {
   const [items, setItems] = useState<string[]>([]);
+  const [editItem, setEditItem] = useState<{
+    index: number;
+    value: string;
+  } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddItem = (item: any) => {
     setItems([...items, item]);
+  };
+
+  const handleEditItem = (index: number, value: string) => {
+    setEditItem({ index, value });
+    setIsModalOpen(true);
+  };
+
+  const handleSaveItem = (newValue: string) => {
+    if (editItem) {
+      const newItems = [...items];
+      newItems[editItem.index] = newValue;
+      setItems(newItems);
+      setEditItem(null);
+      setIsModalOpen(false);
+    }
   };
 
   const deleteToDo = (index: number) => {
@@ -26,7 +47,10 @@ const TodoList = () => {
               className="flex items-center py-3 px-3 my-2 text-lg max-w-5xl rounded cursor-pointer border-2 border-violet-300 hover:border-violet-700"
             >
               <span className="flex-grow">{item}</span>
-              <button className="mx-1 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+              <button
+                className="mx-1 bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                onClick={() => handleEditItem(index, item)}
+              >
                 <AiFillEdit />
               </button>
               <button
@@ -38,6 +62,13 @@ const TodoList = () => {
             </li>
           ))}
         </ul>
+        {isModalOpen && (
+          <UpdateModal
+            initialValue={editItem?.value || ""}
+            onUpdate={handleSaveItem}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
     </div>
   );
