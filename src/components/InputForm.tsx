@@ -22,7 +22,7 @@ const InputForm = ({ onAdd }: Type) => {
         className="px-5 py-4 rounded border-2 border-black"
         placeholder="Enter To Do Items here"
       />
-      <button className="px-10 py-4 mx-3 bg-sky-500 rounded font-bold hover:bg-sky-400">
+      <button className="px-10 py-4 mx-3 my-2 bg-sky-500 rounded font-bold hover:bg-sky-400">
         Add
       </button>
     </form>
