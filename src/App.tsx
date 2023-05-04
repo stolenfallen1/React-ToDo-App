@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputForm from "./components/InputForm";
+import TodoList from "./View/TodoList";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,7 +9,7 @@ function App() {
       <h1 className="text-center text-4xl font-bold tracking-tighter p-5">
         TO DO LIST
       </h1>
-      <InputForm />
+      <TodoList />
     </div>
   );
 }
