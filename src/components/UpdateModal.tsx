@@ -15,17 +15,17 @@ const UpdateModal = ({ initialValue, onUpdate, onClose }: Props) => {
   };
 
   return (
-    <div className="modal">
+    <form className="modal" onSubmit={handleUpdate}>
       <div className="modal-content">
         <input
           type="text"
           value={updatedValue}
           onChange={(event) => setUpdatedValue(event.target.value)}
         />
-        <button onClick={handleUpdate}>Update</button>
+        <button>Update</button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    </div>
+    </form>
   );
 };
 
